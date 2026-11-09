@@ -1,6 +1,6 @@
 """Simulated actuators: outputs that are either ON or OFF."""
 
-class Actuatos:
+class Actuator:
     """Heated or cooler. Remembers when it was last switched off."""
 
     def __init__(self, name: str):
