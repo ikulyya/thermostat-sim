@@ -1,0 +1,7 @@
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "--strict-markers"
+markers = [
+    "req(id): the requirement ID (from docs/requirements_spec.md) that this test verifies",
+]
