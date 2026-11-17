@@ -1,7 +1,7 @@
 # Thermostat Controller – Requirements Specification
 
 **Project:** Thermostat Simulator with Automated Test Suite
-**Version:** 0.1 (draft)
+**Version:** 1.0
 **Author:** Ilkin Panahov
 
 ## 1. Purpose
@@ -114,22 +114,24 @@ A reset shall return the controller to IDLE only if the current sensor reading i
 
 ## 6. Traceability table
 
-To be filled in once the tests are written.
+Every test is labelled with `@pytest.mark.req("REQ-xx")`. Running `python -m pytest` prints a
+requirement coverage summary and fails if any requirement has no tests.
+Status as of the latest run: **48 test cases, 15/15 requirements covered, all passing.**
 
 | Requirement | Test(s) | Status |
 |---|---|---|
-| REQ-01 | | |
-| REQ-02 | | |
-| REQ-03 | | |
-| REQ-04 | | |
-| REQ-05 | | |
-| REQ-06 | | |
-| REQ-07 | | |
-| REQ-08 | | |
-| REQ-09 | | |
-| REQ-10 | | |
-| REQ-11 | | |
-| REQ-12 | | |
-| REQ-13 | | |
-| REQ-14 | | |
-| REQ-15 | | |
+| REQ-01 | `test_starts_in_idle_with_outputs_off` | ✅ Pass |
+| REQ-02 | `test_scans_every_100_ms`<br>`test_run_for_rejects_partial_scan_cycle` | ✅ Pass |
+| REQ-03 | `test_default_setpoint_is_21`<br>`test_valid_setpoint_is_accepted` | ✅ Pass |
+| REQ-04 | `test_invalid_setpoint_is_rejected_and_old_one_kept` | ✅ Pass |
+| REQ-05 | `test_heating_starts_within_one_scan_cycle`<br>`test_no_heating_inside_hysteresis_band` | ✅ Pass |
+| REQ-06 | `test_heating_stops_within_2_s`<br>`test_heating_continues_until_setpoint_is_reached` | ✅ Pass |
+| REQ-07 | `test_cooling_starts_within_one_scan_cycle` | ✅ Pass |
+| REQ-08 | `test_cooling_stops_within_2_s` | ✅ Pass |
+| REQ-09 | `test_heater_and_cooler_never_on_together` | ✅ Pass |
+| REQ-10 | `test_minimum_off_time_of_5_s` | ✅ Pass |
+| REQ-11 | `test_single_invalid_reading_is_ignored`<br>`test_readings_at_edge_of_valid_range_are_accepted` | ✅ Pass |
+| REQ-12 | `test_two_invalid_readings_do_not_cause_error`<br>`test_three_invalid_readings_cause_error`<br>`test_valid_reading_resets_the_fault_counter` | ✅ Pass |
+| REQ-13 | `test_overheat_switches_heater_off_within_one_scan` | ✅ Pass |
+| REQ-14 | `test_error_stays_until_reset_even_when_fault_is_gone`<br>`test_no_output_switches_on_in_error` | ✅ Pass |
+| REQ-15 | `test_reset_returns_to_idle_when_safe`<br>`test_reset_refused_when_not_safe`<br>`test_reset_has_no_effect_outside_error`<br>`test_controller_works_normally_after_reset` | ✅ Pass |
